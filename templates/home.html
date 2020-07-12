@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{% if banner %}
+<!-- Hero Section Start -->
+<div class="hero-section section">
+    <!-- Hero Slider Start -->
+    <div class="hero-slider hero-slider-one fix">
+        <!-- Hero Item Start -->
+
+        {% for ban in banner%}
+
+
+        <div class="hero-item" style="background-image: url({{ban.image.url}})">
+            <!-- Hero Content -->
+            <div class="hero-content" style="opacity: 0;">
+                <h1>Get 35% off <br>{{ban.name}}</h1>
+                <a href="#">SHOP NOW</a>
+            </div>
+        </div><!-- Hero Item End -->
+
+        {% endfor %}
+
+
+
+    </div><!-- Hero Slider End -->
+</div><!-- Hero Section End -->
+
+{% else %}
+<div class="alert alert-warning" role="alert">
+    Henüz bir banner eklenmedi
+</div>
+{% endif %}
+
+
+
+<div class="product-section section section-padding">
+    <div class="container">
+
+        <div class="row">
+            <div class="section-title text-center col mb-30">
+                <h1>Popular Courses</h1>
+                <p>All popular courses find here.</p>
+            </div>
+        </div>
+        {% if course %}
+
+        <div class="row mbn-40">
+            {% for item in course%}
+            {% if item.status == "active" %}
+            <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-40"
+                style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);padding:30px;">
+
+                <div class="product-item">
+                    <div class="product-inner">
+
+                        <div class="image">
+                            <img src="{{item.image.url}}" alt="">
+
+                            <div class="image-overlay">
+                                <div class="action-buttons">
+                                    {% if item.max_apply >= 1%}
+                                    <a href="/apply/{{item.id}}" class="btn btn-info" data-hover="BAŞVUR">BAŞVUR</a>
+                                    {% else %}
+                                    
+                                        <a href="/apply/{{item.id}}" class="btn btn-info" data-hover="Başvuru bitmiştir">Başvuru bitmiştir</a>
+                                    
+                                    {% endif %}
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <p class="title"><a href="single-product.html">Name : {{item.course_name}}</a></p>
+                        <p class="title"><a href="single-product.html">Branch : {{item.course_branch}}</a></p>
+                        {% if item.max_apply > 1%}
+                        <p class="title"><a href="single-product.html">MaxApply : {{item.max_apply}}</a></p>
+                        {% else %}
+                        <div class="alert alert-warning" role="alert">
+                            Last Apply
+                        </div>
+                        {% endif %}
+                        <span class="price">Price : {{item.price}}</span>
+
+                    </div>
+                </div>
+
+            </div>
+            {% endif %}
+            {% endfor %}
+
+        </div>
+        {% else %}
+        <div class="alert alert-warning" role="alert">
+            Henüz bir kurs yüklenmedi
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock body %}

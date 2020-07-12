@@ -1,0 +1,105 @@
+<div class="header-section section">
+
+    <!-- Header Top Start -->
+    <div class="header-top header-top-one bg-theme-two">
+        <div class="container-fluid">
+            <div class="row align-items-center justify-content-center">
+
+                <div class="col mt-10 mb-10 d-none d-md-flex">
+                    <!-- Header Top Left Start -->
+                    <div class="header-top-left">
+                        <p>Welcome to Our Course</p>
+                        <p>Hotline: <a href="tel:0123456789">0123 456 789</a></p>
+                    </div><!-- Header Top Left End -->
+                </div>
+
+                <div class="col mt-10 mb-10">
+                    <!-- Header Language Currency Start -->
+                    <ul class="header-lan-curr">
+
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+
+                        <li>
+                            <a href="/">Ana Sayfa</a>
+                        </li>
+
+                    </ul><!-- Header Language Currency End -->
+                </div>
+
+                <div class="col mt-10 mb-10">
+                    <!-- Header Shop Links Start -->
+                    <div class="header-top-right">
+
+                        {% if  request.user.is_authenticated %}
+                        <li class="list-inline-item"><a href="#">Welcome {{request.user.username}}</a></li>
+                        <li class="list-inline-item"><a href="/logout">Logout</a></li>
+                        <p><a href="/dashboard" style="padding-right: 20px;">Dashboard</a></p>
+                        {% else %}
+                        <p><a href="/login">Register</a><a href="/login">Login</a></p>
+                        {% endif %}
+                    </div><!-- Header Shop Links End -->
+                </div>
+
+            </div>
+        </div>
+    </div><!-- Header Top End -->
+
+    <!-- Header Bottom Start -->
+    <div class="header-bottom header-bottom-one header-sticky">
+        <div class="container-fluid">
+            <div class="row menu-center align-items-center justify-content-between">
+
+                <div class="col mt-15 mb-15">
+                    
+                </div>
+
+                <div class="col order-2 order-lg-3">
+                    <!-- Header Advance Search Start -->
+                    <div class="header-shop-links">
+
+                    </div><!-- Header Advance Search End -->
+                </div>
+                {% if branch %}
+                <div class="col order-3 order-lg-2">
+                    <div class="main-menu">
+                        <nav >
+                            
+                            <ul>
+                                {% for item in branch %}
+                                <li class="active"><a href="index.html">{{item.branch_name}}</a>
+                                    <ul class="sub-menu">
+                                        
+                                        <li class="active"><a href="index.html">Spring Boot</a></li>
+                                        <li><a href="index-2.html">Spring Cloud</a></li>
+                                        <li><a href="index-3.html">Spring Framework</a></li>
+                                    </ul>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                {% else %}
+                <div class="col order-3 order-lg-2">
+                    <div class="main-menu">
+                        <nav>
+                            <ul>
+                                <li class="active"><a href="/AddCourseBranch">Add Course Branch</a></li>
+                            </ul> 
+
+                        </nav>
+                    </div>
+                </div>
+                </div>
+                {% endif %}
+                <!-- Mobile Menu -->
+                <div class="mobile-menu order-12 d-block d-lg-none col"></div>
+
+            </div>
+        </div>
+    </div><!-- Header BOttom End -->
+
+</div><!-- Header Section End -->
